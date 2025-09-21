@@ -1,0 +1,14 @@
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\bin\Debug\net9.0\AssociacoesVeiculo.exe
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\bin\Debug\net9.0\AssociacoesVeiculo.deps.json
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\bin\Debug\net9.0\AssociacoesVeiculo.runtimeconfig.json
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\bin\Debug\net9.0\AssociacoesVeiculo.dll
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\bin\Debug\net9.0\AssociacoesVeiculo.pdb
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.AssemblyInfoInputs.cache
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.AssemblyInfo.cs
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.csproj.CoreCompileInputs.cache
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.dll
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\refint\AssociacoesVeiculo.dll
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.pdb
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.genruntimeconfig.cache
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\ref\AssociacoesVeiculo.dll
