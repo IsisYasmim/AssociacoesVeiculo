@@ -4,88 +4,150 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("==== TESTES DE VEÍCULO / Placa / RASTREADOR ====");
-
-        // 1. Criar entidade raiz com dependente 1:1 válido -> deve instanciar
+        Console.WriteLine("==== SISTEMA DE GERENCIAMENTO DE VEÍCULOS ====");
+        Console.WriteLine("Testes das associações 1:1 (Placa) e 0..1 (Rastreador)\n");
+        
+        TestVehicleCreationWithValidLicensePlate();
+        TestVehicleCreationWithoutLicensePlate();
+        TestAttachTrackerFirstTime();
+        TestAttachTrackerSecondTime();
+        TestRemoveTracker();
+        
+        Console.WriteLine("\n==== FIM DOS TESTES ====");
+    }
+    
+    static void TestVehicleCreationWithValidLicensePlate()
+    {
+        Console.WriteLine("1. Criar veículo com placa válida (1:1)");
+        
         try
         {
             var licensePlate = new LicensePlate("ABC-1234");
             var vehicle = new Vehicle("Sedan", licensePlate);
-            Console.WriteLine("Teste 1 OK ✅ -> Veículo criado com placa válida.");
+            
+            Console.WriteLine($"✅ SUCESSO: Veículo {vehicle.Model} criado com placa {vehicle.LicensePlate.Number}");
+            Console.WriteLine($"   Estado do rastreador: {(vehicle.Tracker == null ? "Não possui" : "Possui")}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Teste 1 FALHOU ❌ -> {ex.Message}");
+            Console.WriteLine($"❌ FALHA: {ex.Message}");
         }
-
-        // 2. Tentar criar sem dependente 1:1 -> deve falhar
+        Console.WriteLine();
+    }
+    
+    static void TestVehicleCreationWithoutLicensePlate()
+    {
+        Console.WriteLine("2. Tentar criar veículo sem placa (1:1)");
+        
         try
         {
-            var vehicleBad = new Vehicle("SUV", null!);
-            Console.WriteLine("Teste 2 FALHOU ❌ -> Criou veículo sem placa!");
+            var vehicle = new Vehicle("SUV", null!);
+            Console.WriteLine("❌ FALHA: Permitiu criar veículo sem placa!");
         }
-        catch
+        catch (ArgumentNullException ex)
         {
-            Console.WriteLine("Teste 2 OK ✅ -> Não permitiu criar veículo sem placa.");
+            Console.WriteLine($"✅ SUCESSO: Impediu criação - {ex.ParamName} não pode ser nulo");
         }
-
-        // 3. Atribuir dependente 0..1 uma vez -> deve funcionar
+        catch (Exception ex)
+        {
+            Console.WriteLine($"✅ SUCESSO: Impediu criação - {ex.Message}");
+        }
+        Console.WriteLine();
+    }
+    
+    static void TestAttachTrackerFirstTime()
+    {
+        Console.WriteLine("3. Atribuir rastreador pela primeira vez (0..1)");
+        
         try
         {
             var licensePlate = new LicensePlate("XYZ-9999");
             var vehicle = new Vehicle("Hatch", licensePlate);
-
             var tracker = new Tracker("R-001");
-            bool attach = vehicle.AttachTracker(tracker);
-
-            Console.WriteLine(attach
-                ? "Teste 3 OK ✅ -> Rastreador atribuído com sucesso."
-                : "Teste 3 FALHOU ❌ -> Não conseguiu atribuir rastreador válido.");
+            
+            bool success = vehicle.AttachTracker(tracker);
+            
+            if (success)
+            {
+                Console.WriteLine($"✅ SUCESSO: Rastreador {vehicle.Tracker!.SerialNumber} atribuído");
+                Console.WriteLine($"   Veículo agora possui rastreador: {vehicle.Tracker != null}");
+            }
+            else
+            {
+                Console.WriteLine("❌ FALHA: Não conseguiu atribuir rastreador válido");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Teste 3 FALHOU ❌ -> {ex.Message}");
+            Console.WriteLine($"❌ FALHA: {ex.Message}");
         }
-
-        // 4. Atribuir 0..1 segunda vez -> deve falhar
+        Console.WriteLine();
+    }
+    
+    static void TestAttachTrackerSecondTime()
+    {
+        Console.WriteLine("4. Tentar atribuir segundo rastreador (0..1)");
+        
         try
         {
             var licensePlate = new LicensePlate("LMN-4567");
             var vehicle = new Vehicle("Pickup", licensePlate);
-
-            var r1 = new Tracker("R-101");
-            var r2 = new Tracker("R-102");
-
-            vehicle.AttachTracker(r1);
-            bool attachBad = vehicle.AttachTracker(r2);
-
-            Console.WriteLine(!attachBad
-                ? "Teste 4 OK ✅ -> Impediu atribuição duplicada de rastreador."
-                : "Teste 4 FALHOU ❌ -> Permitiu sobrescrever rastreador!");
+            
+            var tracker1 = new Tracker("R-101");
+            var tracker2 = new Tracker("R-102");
+            
+            // Primeira atribuição deve funcionar
+            vehicle.AttachTracker(tracker1);
+            
+            // Segunda atribuição deve falhar
+            bool secondAttempt = vehicle.AttachTracker(tracker2);
+            
+            if (!secondAttempt)
+            {
+                Console.WriteLine("✅ SUCESSO: Impediu segunda atribuição de rastreador");
+                Console.WriteLine($"   Rastreador atual mantido: {vehicle.Tracker!.SerialNumber}");
+            }
+            else
+            {
+                Console.WriteLine("❌ FALHA: Permitiu sobrescrever rastreador existente");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Teste 4 FALHOU ❌ -> {ex.Message}");
+            Console.WriteLine($"❌ FALHA: {ex.Message}");
         }
-
-        // 5. Remover 0..1 (se permitido) -> estado volta a null
+        Console.WriteLine();
+    }
+    
+    static void TestRemoveTracker()
+    {
+        Console.WriteLine("5. Remover rastreador existente (0..1)");
+        
         try
         {
             var licensePlate = new LicensePlate("QWE-2025");
             var vehicle = new Vehicle("SUV", licensePlate);
-
             var tracker = new Tracker("R-500");
+            
             vehicle.AttachTracker(tracker);
-
+            Console.WriteLine($"   Rastreador antes da remoção: {vehicle.Tracker!.SerialNumber}");
+            
             vehicle.DeleteTracker();
-
-            Console.WriteLine(vehicle.Tracker == null
-                ? "Teste 5 OK ✅ -> Rastreador removido e voltou a null."
-                : "Teste 5 FALHOU ❌ -> Rastreador ainda está definido.");
+            
+            if (vehicle.Tracker == null)
+            {
+                Console.WriteLine("✅ SUCESSO: Rastreador removido corretamente");
+                Console.WriteLine($"   Estado do rastreador: {(vehicle.Tracker == null ? "Não possui" : "Ainda possui")}");
+            }
+            else
+            {
+                Console.WriteLine("❌ FALHA: Rastreador não foi removido");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Teste 5 FALHOU ❌ -> {ex.Message}");
+            Console.WriteLine($"❌ FALHA: {ex.Message}");
         }
+        Console.WriteLine();
     }
 }

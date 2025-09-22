@@ -12,3 +12,4 @@ C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\Associac
 C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.pdb
 C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.genruntimeconfig.cache
 C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\ref\AssociacoesVeiculo.dll
+C:\Users\Isis\Documents\Faculdade\orientacaobj\multiplicidadeinvariante\AssociacoesVeiculo\obj\Debug\net9.0\AssociacoesVeiculo.sourcelink.json
